@@ -1,0 +1,19 @@
+#header {
+  background-image: url(./assets/img/Header.jpg);
+  background-color: rgba(0, 0, 0, 0.5);
+  background-blend-mode: overlay;
+  min-height: 40vh;
+}
+
+h1 {
+  font-size: 20vh;
+  line-height: 1.1
+}
+
+.card-title {
+  font-size: 250%;
+}
+
+.ingredients::before {
+  content: "🍕"
+}
