@@ -9,7 +9,7 @@ function CardPizza({img="./src/assets/img/Header.jpg", name='Error', ingredients
       <Card.Img variant="top" src={img} />
         <ListGroup className="list-group-flush">
           <ListGroupItem>
-            <Card.Title>{name}</Card.Title>
+            <Card.Title className='fs-1'>{name}</Card.Title>
           </ListGroupItem>
           <ListGroupItem className='text-center fw-light'>
               <h6 className='fs-4 fw-light text-center text-body-tertiary'>
