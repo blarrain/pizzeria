@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import { Alert, Button, Col, Form } from "react-bootstrap";
 
-const Register = () => {
+const Login = () => {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
-	const [passwordConfirm, setPasswordConfirm] = useState("");
 	const [alert, setAlert] = useState("");
 	const [alertType, setAlertType] = useState("");
 
@@ -14,7 +13,7 @@ const Register = () => {
 	};
 
 	const validar = () => {
-		if (!email || !password || !passwordConfirm) {
+		if (!email || !password) {
 			setAlert("Todos los campos son obligatorios");
 			setAlertType("danger");
 			return;
@@ -24,29 +23,20 @@ const Register = () => {
 			setAlertType("danger");
 			return;
 		}
-		if (password !== passwordConfirm) {
-			setAlert("Las contraseñas no coinciden");
-			setAlertType("danger");
-			return;
-		}
+
 		setAlert("¡Registro exitoso!");
 		setAlertType("success");
-        limpiar()
+		limpiar();
 	};
 
 	const limpiar = () => {
 		setEmail("");
 		setPassword("");
-		setPasswordConfirm("");
 	};
 
 	return (
 		<Col xs={12} sm={8} md={4} lg={3} className="px-1 py-3 mx-auto">
-			<h2>Registrarse</h2>
-			<p className="text-black-50">
-				Completa el formulario para registrarte como cliente de Mamma Mia!
-				Pizzeria
-			</p>
+			<h2>Iniciar sesión</h2>
 			<Form onSubmit={handleSubmit}>
 				<Form.Group className="my-3" controlId="formEmail">
 					<Form.Label>Email</Form.Label>
@@ -70,18 +60,8 @@ const Register = () => {
 						value={password}
 					/>
 				</Form.Group>
-				<Form.Group className="mb-3" controlId="formPasswordConfirm">
-					<Form.Label>Confirma tu contraseña</Form.Label>
-					<Form.Control
-						type="password"
-						onChange={(e) => {
-							setPasswordConfirm(e.target.value);
-						}}
-						value={passwordConfirm}
-					/>
-				</Form.Group>
 				<Button variant="primary" type="submit">
-					Iniciar sesión
+					Registrarse
 				</Button>
 			</Form>
 			<Alert variant={alertType} className="mt-3 p-2 small">
@@ -91,4 +71,4 @@ const Register = () => {
 	);
 };
 
-export default Register;
+export default Login;
