@@ -9,10 +9,10 @@ const Navbar = () => {
 			<span>Pizzería Mamma mia!</span>
 			<div className="d-flex gap-3">
 				<Button variant="outline-light">🍕 Home</Button>
-				<Button variant="outline-light" className={token ? null : 'd-none'}>🔓 Profile</Button>
-				<Button variant="outline-light" className={token ? null : 'd-none'}>🔒 Logout</Button>
-				<Button variant="outline-light" className={token ? 'd-none' : null}>🔐 Login</Button>
-				<Button variant="outline-light" className={token ? 'd-none' : null}>🔐 Register</Button>
+				{token ? <Button variant="outline-light">🔓 Profile</Button> : null}
+				{token ? <Button variant="outline-light">🔒 Logout</Button> : null}
+				{token ? null : <Button variant="outline-light">🔒 Login</Button>}
+				{token ? null : <Button variant="outline-light">🔐 Register</Button>}
 			</div>
 			<Button variant="outline-primary">🛒 Total: ${total.toLocaleString("es")}</Button>
 		</nav>
