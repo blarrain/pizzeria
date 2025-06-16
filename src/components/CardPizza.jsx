@@ -20,8 +20,8 @@ function CardPizza({
 						<h6 className="fs-4 fw-light text-center text-body-tertiary">
 							Ingredientes
 						</h6>
-            <ListGroup className="list-group-flush">{ingredients.map((ingredient) => (
-              <ListGroupItem className="ingredient small">{ingredient}</ListGroupItem>
+            <ListGroup as="ul" className="list-group-flush">{ingredients.map((ingredient) => (
+              <ListGroupItem as="li" className="ingredient small">{ingredient}</ListGroupItem>
             ))}</ListGroup>
 					</ListGroupItem>
 					<ListGroupItem>

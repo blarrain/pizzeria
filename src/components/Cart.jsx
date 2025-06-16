@@ -4,10 +4,7 @@ import { pizzaCart } from "../data/pizzas";
 
 const Cart = () => {
 	const [cart, setCart] = useState(pizzaCart);
-	const totalPrice = cart.reduce(
-		(acc, item) => acc + item.count * item.price,
-		0
-	);
+	const totalPrice = cart.reduce((acc, item) => acc + item.count * item.price, 0);
 
 	const updateCount = (item, value) => {
 		const updatedCart = [...cart];
