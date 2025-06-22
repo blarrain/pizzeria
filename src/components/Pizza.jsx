@@ -1,0 +1,42 @@
+import React, { useEffect, useState } from "react";
+import { Button, Col, Container, Image, Row } from "react-bootstrap";
+
+const Pizza = () => {
+	const [pizza, setPizza] = useState([]);
+
+	const consultarApi = async () => {
+		const url = "http://localhost:5000/api/pizzas/p001";
+		const res = await fetch(url);
+		const data = await res.json();
+
+		setPizza(data);
+	};
+
+	useEffect(() => {
+		consultarApi();
+	}, []);
+
+	return (
+		<Container className='py-4'>
+			<Row className='row-gap-5'>
+				<Col xs={12} md={6} lg={4}>
+					<Image src={pizza.img} fluid className='ratio ratio-1x1 rounded' />
+				</Col>
+				<Col xs={12} md={6} lg={8}>
+					<h1 className=''>Pizza {pizza.name}</h1>
+					<p className='h2'>${pizza.price.toLocaleString("es-CL")}</p>
+					<p className='fw-light text-body-secondary'>{pizza.desc}</p>
+					<h2 className='h4 text-body-secondary'>Ingredientes</h2>
+					<ul className='text-body-secondary fw-light'>
+						{pizza.ingredients.map((ingredient) => (
+							<li key={ingredient}>{ingredient}</li>
+						))}
+					</ul>
+					<Button variant='dark'>Agregar al carrito</Button>
+				</Col>
+			</Row>
+		</Container>
+	);
+};
+
+export default Pizza;
