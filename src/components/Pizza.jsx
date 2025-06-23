@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Button, Col, Container, Image, Row } from "react-bootstrap";
 
 const Pizza = () => {
-	const [pizza, setPizza] = useState([]);
+	const [pizza, setPizza] = useState({desc:"",id:"",img:"",ingredients:[],name:"",price:""});
 
 	const consultarApi = async () => {
 		const url = "http://localhost:5000/api/pizzas/p001";
@@ -17,7 +17,7 @@ const Pizza = () => {
 	}, []);
 
 	return (
-		<Container className='py-4'>
+		<Container className='py-4 mb-5'>
 			<Row className='row-gap-5'>
 				<Col xs={12} md={6} lg={4}>
 					<Image src={pizza.img} fluid className='ratio ratio-1x1 rounded' />
