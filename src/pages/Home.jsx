@@ -32,6 +32,7 @@ const Home = () => {
 								price={pizza.price}
 								ingredients={pizza.ingredients}
 								img={pizza.img}
+								id={pizza.id}
 							/>
 						))}
 					</Row>

@@ -24,11 +24,6 @@ function App() {
 				<Route path='/profile' element={<Profile />} />
 				<Route path='*' element={<NotFound />} />
 			</Routes>
-			{/* <Home /> */}
-			{/* <Pizza /> */}
-			{/* <Login /> */}
-			{/* <Register /> */}
-			{/* <Cart /> */}
 			<Footer />
 		</>
 	);

@@ -3,6 +3,7 @@ import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 
 function CardPizza({
+	id= "",
 	img = "./src/assets/img/Header.jpg",
 	name = "Error",
 	ingredients = "Descripción no disponible",
@@ -33,7 +34,7 @@ function CardPizza({
 							Precio: ${price.toLocaleString("es-CL")}
 						</p>
 						<div className="d-flex justify-content-between mb-3">
-							<Button variant="outline-dark">Ver más 👀</Button>
+							<Button variant="outline-dark" href={"/pizza/" + id}>Ver más 👀</Button>
 							<Button variant="dark">Agregar 🛒</Button>
 						</div>
 					</ListGroupItem>
