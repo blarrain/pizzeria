@@ -1,5 +1,5 @@
-import Header from "./Header";
-import CardPizza from "./CardPizza";
+import Header from "../components/Header";
+import CardPizza from "../components/CardPizza";
 import { Container, Row } from "react-bootstrap";
 import { useEffect, useState } from "react";
 // import { pizzas } from "../data/pizzas";

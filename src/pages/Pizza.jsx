@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Button, Col, Container, Image, Row } from "react-bootstrap";
 
 const Pizza = () => {
-	const [pizza, setPizza] = useState({desc:"",id:"",img:"",ingredients:[],name:"",price:""});
+	const [pizza, setPizza] = useState([]);
 
 	const consultarApi = async () => {
 		const url = "http://localhost:5000/api/pizzas/p001";
@@ -24,11 +24,11 @@ const Pizza = () => {
 				</Col>
 				<Col xs={12} md={6} lg={8}>
 					<h1 className=''>Pizza {pizza.name}</h1>
-					<p className='h2'>${pizza.price.toLocaleString("es-CL")}</p>
-					<p className='fw-light text-body-secondary'>{pizza.desc}</p>
+					<p className='h2'>${pizza.price?.toLocaleString("es-CL")}</p>
+					<p className='fw-light text-body-secondary'>{pizza?.desc}</p>
 					<h2 className='h4 text-body-secondary'>Ingredientes</h2>
 					<ul className='text-body-secondary fw-light'>
-						{pizza.ingredients.map((ingredient) => (
+						{pizza.ingredients?.map((ingredient) => (
 							<li key={ingredient}>{ingredient}</li>
 						))}
 					</ul>
