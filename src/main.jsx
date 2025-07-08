@@ -6,13 +6,16 @@ import App from "./App.jsx";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./index.css";
 import CartProvider from "./context/CartContext.jsx";
+import PizzasProvider from "./context/PizzasContext.jsx";
 
 createRoot(document.getElementById("root")).render(
 	<StrictMode>
 		<CartProvider>
-			<BrowserRouter>
-				<App />
-			</BrowserRouter>
+			<PizzasProvider>
+				<BrowserRouter>
+					<App />
+				</BrowserRouter>
+			</PizzasProvider>
 		</CartProvider>
 	</StrictMode>
 );

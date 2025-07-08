@@ -27,7 +27,11 @@ function CardPizza({
 						</h6>
 						<ListGroup as='ul' className='list-group-flush'>
 							{ingredients.map((ingredient) => (
-								<ListGroupItem as='li' className='ingredient small'>
+								<ListGroupItem
+									key={ingredient}
+									as='li'
+									className='ingredient small'
+								>
 									{ingredient}
 								</ListGroupItem>
 							))}

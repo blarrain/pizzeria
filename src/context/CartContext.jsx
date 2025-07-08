@@ -10,19 +10,18 @@ const CartProvider = ({ children }) => {
 			const existe = oldCart.find((item) => item.id === pizza.id);
 			if (existe) {
 				return oldCart.map((item) =>
-					item.id === pizza.id ? { ...item, qty: (item.qty || 1) + 1 } : item
+					item.id === pizza.id ? { ...item, qty: item.qty + 1 } : item
 				);
 			} else {
 				return [...oldCart, { ...pizza, qty: 1 }];
 			}
 		});
-        console.log(cart)
 	};
 
-    const totalPrice = cart.reduce((acc, item) => acc + item.qty * item.price, 0);
+	const totalPrice = cart.reduce((acc, item) => acc + item.qty * item.price, 0);
 
 	return (
-		<CartContext.Provider value={{ cart, setCart, addToCart, totalPrice}}>
+		<CartContext.Provider value={{ cart, setCart, addToCart, totalPrice }}>
 			{children}
 		</CartContext.Provider>
 	);
