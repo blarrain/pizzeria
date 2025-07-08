@@ -1,11 +1,13 @@
 import Header from "../components/Header";
 import CardPizza from "../components/CardPizza";
 import { Container, Row } from "react-bootstrap";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { CartContext } from "../context/CartContext";
 // import { pizzas } from "../data/pizzas";
 
 const Home = () => {
 	const [pizzas, setPizzas] = useState([]);
+	const { cart, setCart } = useContext(CartContext);
 
 	const consultarApi = async () => {
 		const url = "http://localhost:5000/api/pizzas";
