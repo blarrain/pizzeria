@@ -2,10 +2,12 @@ import React, { useContext } from "react";
 import { Button, Col, Container, Form, InputGroup, Row } from "react-bootstrap";
 // import { pizzaCart } from "../data/pizzas";
 import { CartContext } from "../context/CartContext";
+import { UserContext } from "../context/UserContext";
 
 const Cart = () => {
-	const {cart, setCart} = useContext(CartContext);
-	const {totalPrice} = useContext(CartContext)
+	const { token } = useContext(UserContext);
+	const { cart, setCart } = useContext(CartContext);
+	const { totalPrice } = useContext(CartContext);
 
 	const updateQty = (item, value) => {
 		const updatedCart = [...cart];
@@ -20,37 +22,44 @@ const Cart = () => {
 	};
 
 	return (
-		<Container className="min-vh-75">
+		<Container className='min-vh-75'>
 			<Row>
-				<Col lg="6" className="py-4 my-4 mx-auto" id="cart-content">
-					<h2 className="mb-4 h4">Detalles del pedido</h2>
+				<Col lg='6' className='py-4 my-4 mx-auto' id='cart-content'>
+					<h2 className='mb-4 h4'>Detalles del pedido</h2>
 					{cart.map((item) =>
-						item.qty > 0 ? (
-							<Form.Group key={item.id} as={Row} controlId={item.name} className="my-3">
-								<Col className="d-flex gap-2">
-									<img className="cart-thumbnail" src={item.img} />
-									<Form.Label column className="text-capitalize">{item.name}</Form.Label>
+						item.qty > 0 ?
+							<Form.Group
+								key={item.id}
+								as={Row}
+								controlId={item.name}
+								className='my-3'
+							>
+								<Col className='d-flex gap-2'>
+									<img className='cart-thumbnail' src={item.img} />
+									<Form.Label column className='text-capitalize'>
+										{item.name}
+									</Form.Label>
 								</Col>
-								<Col md="auto" className="d-flex gap-3">
+								<Col md='auto' className='d-flex gap-3'>
 									<span>
 										${(item.price * item.qty).toLocaleString("es-CL")}
 									</span>
 									<InputGroup>
 										<Button
-											variant="outline-danger"
+											variant='outline-danger'
 											id={`minus-${item.id}`}
 											onClick={() => stepQty(item, -1)}
 										>
 											-
 										</Button>
 										<Form.Control
-											type="number"
+											type='number'
 											min={0}
 											value={item.qty}
 											onChange={(e) => updateQty(item, e.target.value)}
 										/>
 										<Button
-											variant="outline-primary"
+											variant='outline-primary'
 											id={`plus-${item.id}`}
 											onClick={() => stepQty(item, 1)}
 										>
@@ -59,11 +68,15 @@ const Cart = () => {
 									</InputGroup>
 								</Col>
 							</Form.Group>
-						) : null
+						:	null
 					)}
 					<hr />
-					<p className="h2 my-4">Total: ${totalPrice.toLocaleString("es-CL")}</p>
-					<Button variant="dark">Pagar</Button>
+					<p className='h2 my-4'>
+						Total: ${totalPrice.toLocaleString("es-CL")}
+					</p>
+					<Button variant='dark' disabled={!token}>
+						Pagar
+					</Button>
 				</Col>
 			</Row>
 		</Container>
