@@ -11,14 +11,14 @@ import UserProvider from "./context/UserContext.jsx";
 
 createRoot(document.getElementById("root")).render(
 	<StrictMode>
-		<CartProvider>
-			<PizzasProvider>
-				<UserProvider>
-					<BrowserRouter>
+		<BrowserRouter>
+			<CartProvider>
+				<PizzasProvider>
+					<UserProvider>
 						<App />
-					</BrowserRouter>
-				</UserProvider>
-			</PizzasProvider>
-		</CartProvider>
+					</UserProvider>
+				</PizzasProvider>
+			</CartProvider>
+		</BrowserRouter>
 	</StrictMode>
 );
