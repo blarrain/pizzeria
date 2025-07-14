@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Alert, Button, Col, Container, Row } from "react-bootstrap";
+import { UserContext } from "../context/UserContext";
 
 const Profile = () => {
+    const {logOut} = useContext(UserContext)
+
 	return (
 		<Container>
 			<Col xs={12} sm={10} md={8} lg={6} className='px-1 py-3 mx-auto'>
@@ -14,7 +17,7 @@ const Profile = () => {
             <p className="fs-5"><strong>Teléfono:</strong></p>
             <p className="fs-5"><strong>Dirección:</strong></p>
             <p className="fs-5"><strong>Email:</strong> nombre@ejemplo.com</p>
-            <Button variant="danger">Cerrar sesión</Button></Alert>
+            <Button variant="danger" onClick={() => logOut()}>Cerrar sesión</Button></Alert>
             </Col>
 		</Container>
 	);
