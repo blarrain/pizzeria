@@ -2,10 +2,11 @@ import { useContext } from "react";
 import { Button } from "react-bootstrap";
 import { CartContext } from "../context/CartContext";
 import { Link } from "react-router-dom";
+import { UserContext } from "../context/UserContext";
 
 const Navbar = () => {
 	const {totalPrice} = useContext(CartContext)
-	const token = false;
+	const {token, logOut} = useContext(UserContext);
 
 	return (
 		<nav className="text-light bg-dark p-2 d-flex justify-content-between align-items-center sticky-top gap-3">
@@ -13,7 +14,7 @@ const Navbar = () => {
 			<div className="d-flex gap-3">
 				<Button variant="outline-light" as={Link} to="/">🍕 Home</Button>
 				{token ? <Button variant="outline-light" as={Link} to="/profile">🔓 Profile</Button> : null}
-				{token ? <Button variant="outline-light">🔒 Logout</Button> : null}
+				{token ? <Button variant="outline-light" onClick={() => logOut()}>🔒 Logout</Button> : null}
 				{token ? null : <Button variant="outline-light" as={Link} to="/login">🔒 Login</Button>}
 				{token ? null : <Button variant="outline-light" as={Link} to="/register">🔐 Register</Button>}
 			</div>

@@ -7,14 +7,17 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./index.css";
 import CartProvider from "./context/CartContext.jsx";
 import PizzasProvider from "./context/PizzasContext.jsx";
+import UserProvider from "./context/UserContext.jsx";
 
 createRoot(document.getElementById("root")).render(
 	<StrictMode>
 		<CartProvider>
 			<PizzasProvider>
-				<BrowserRouter>
-					<App />
-				</BrowserRouter>
+				<UserProvider>
+					<BrowserRouter>
+						<App />
+					</BrowserRouter>
+				</UserProvider>
 			</PizzasProvider>
 		</CartProvider>
 	</StrictMode>
