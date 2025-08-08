@@ -1,67 +1,31 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Alert, Button, Col, Form } from "react-bootstrap";
+import { UserContext } from "../context/UserContext";
 
 const Login = () => {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
-	// const [alert, setAlert] = useState("");
-	// const [alertType, setAlertType] = useState("");
+	const { logIn } = useContext(UserContext);
 
-	/* const handleSubmit = (e) => {
+	const handleSubmit = (e) => {
 		e.preventDefault();
-		validar();
-	}; */
-
-	const handleSubmit = async (e) => {
-		e.preventDefault();
-		
-		const res = await fetch("http://localhost:5000/api/auth/login", {
-			method: "POST",
-			headers: {"Content-Type": "application/json",},
-			body: JSON.stringify({
-				email,
-				password,
-			})
-		})
-
-		const data = await res.json();
-		alert(data.error ? data.error : "Sesión iniciada exitosamente")
-		localStorage.setItem("token", data.token)
-
-		limpiar()
-	}
-
-	/* const validar = () => {
-		if (!email || !password) {
-			setAlert("Todos los campos son obligatorios");
-			setAlertType("danger");
-			return;
-		}
-		if (password.length < 6) {
-			setAlert("La contraseña debe tener al menos 6 caracteres");
-			setAlertType("danger");
-			return;
-		}
-
-		setAlert("¡Registro exitoso!");
-		setAlertType("success");
+		logIn(email, password);
+		const limpiar = () => {
+			setEmail("");
+			setPassword("");
+		};
 		limpiar();
-	}; */
-
-	const limpiar = () => {
-		setEmail("");
-		setPassword("");
 	};
 
 	return (
-		<Col xs={12} sm={8} md={4} lg={3} className="px-1 py-3 mx-auto">
+		<Col xs={12} sm={8} md={4} lg={3} className='px-1 py-3 mx-auto'>
 			<h2>Iniciar sesión</h2>
 			<Form onSubmit={handleSubmit}>
-				<Form.Group className="my-3" controlId="formEmail">
+				<Form.Group className='my-3' controlId='formEmail'>
 					<Form.Label>Email</Form.Label>
 					<Form.Control
-						type="email"
-						placeholder="Ej: nombre@ejemplo.com"
+						type='email'
+						placeholder='Ej: nombre@ejemplo.com'
 						onChange={(e) => {
 							setEmail(e.target.value);
 						}}
@@ -69,17 +33,17 @@ const Login = () => {
 					/>
 				</Form.Group>
 
-				<Form.Group className="mb-3" controlId="formPassword">
+				<Form.Group className='mb-3' controlId='formPassword'>
 					<Form.Label>Contraseña</Form.Label>
 					<Form.Control
-						type="password"
+						type='password'
 						onChange={(e) => {
 							setPassword(e.target.value);
 						}}
 						value={password}
 					/>
 				</Form.Group>
-				<Button variant="primary" type="submit">
+				<Button variant='primary' type='submit'>
 					Registrarse
 				</Button>
 			</Form>
