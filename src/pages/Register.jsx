@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Alert, Button, Col, Form } from "react-bootstrap";
+import { UserContext } from "../context/UserContext";
 
 const Register = () => {
 	const [email, setEmail] = useState("");
@@ -7,6 +8,7 @@ const Register = () => {
 	const [passwordConfirm, setPasswordConfirm] = useState("");
 	const [alert, setAlert] = useState("");
 	const [alertType, setAlertType] = useState("");
+	const {register} = useContext(UserContext)
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
@@ -31,6 +33,7 @@ const Register = () => {
 		}
 		setAlert("¡Registro exitoso!");
 		setAlertType("success");
+		register(email, password)
         limpiar()
 	};
 

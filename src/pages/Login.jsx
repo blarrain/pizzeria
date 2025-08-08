@@ -10,13 +10,13 @@ const Login = () => {
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		logIn(email, password);
-		const limpiar = () => {
-			setEmail("");
-			setPassword("");
-		};
 		limpiar();
 	};
 
+	const limpiar = () => {
+		setEmail("");
+		setPassword("");
+	};
 	return (
 		<Col xs={12} sm={8} md={4} lg={3} className='px-1 py-3 mx-auto'>
 			<h2>Iniciar sesión</h2>

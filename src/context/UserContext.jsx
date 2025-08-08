@@ -8,7 +8,6 @@ const UserProvider = ({ children }) => {
 	const [token, setToken] = useState(localStorage.getItem("token"));
 
 		const logIn = async (email, password) => {
-		e.preventDefault();
 		
 		const res = await fetch("http://localhost:5000/api/auth/login", {
 			method: "POST",
@@ -23,13 +22,23 @@ const UserProvider = ({ children }) => {
 		alert(data.error ? data.error : "Sesión iniciada exitosamente")
 		setToken(data.token)
 		localStorage.setItem("token", data.token)
-		
-		const limpiar = () => {
-		setEmail("");
-		setPassword("");
-	};
-		limpiar()
 	}
+	
+	const register = async (email, password) => {
+		const res = await fetch("http://localhost:5000/api/auth/register", {
+			method: "POST",
+			headers: { "Content-Type": "application/json" },
+			body: JSON.stringify({
+				email,
+				password,
+			}),
+		});
+
+		const data = await res.json();
+		alert(data.error ? data.error : "Usuario registrado exitosamente");
+		setToken(data.token);
+		localStorage.setItem("token", data.token);
+	};
 
 	const logOut = () => {
 		setToken(null);
@@ -38,7 +47,7 @@ const UserProvider = ({ children }) => {
 	};
 
 	return (
-		<UserContext.Provider value={{ logIn, logOut, token, setToken }}>{children}</UserContext.Provider>
+		<UserContext.Provider value={{ register, logIn, logOut, token, setToken }}>{children}</UserContext.Provider>
 	);
 };
 
