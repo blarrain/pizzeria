@@ -4,15 +4,34 @@ import { Alert, Button, Col, Form } from "react-bootstrap";
 const Login = () => {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
-	const [alert, setAlert] = useState("");
-	const [alertType, setAlertType] = useState("");
+	// const [alert, setAlert] = useState("");
+	// const [alertType, setAlertType] = useState("");
 
-	const handleSubmit = (e) => {
+	/* const handleSubmit = (e) => {
 		e.preventDefault();
 		validar();
-	};
+	}; */
 
-	const validar = () => {
+	const handleSubmit = async (e) => {
+		e.preventDefault();
+		
+		const res = await fetch("http://localhost:5000/api/auth/login", {
+			method: "POST",
+			headers: {"Content-Type": "application/json",},
+			body: JSON.stringify({
+				email,
+				password,
+			})
+		})
+
+		const data = await res.json();
+		alert(data.error ? data.error : "Sesión iniciada exitosamente")
+		localStorage.setItem("token", data.token)
+
+		limpiar()
+	}
+
+	/* const validar = () => {
 		if (!email || !password) {
 			setAlert("Todos los campos son obligatorios");
 			setAlertType("danger");
@@ -27,7 +46,7 @@ const Login = () => {
 		setAlert("¡Registro exitoso!");
 		setAlertType("success");
 		limpiar();
-	};
+	}; */
 
 	const limpiar = () => {
 		setEmail("");
@@ -64,9 +83,9 @@ const Login = () => {
 					Registrarse
 				</Button>
 			</Form>
-			<Alert variant={alertType} className="mt-3 p-2 small">
+			{/* <Alert variant={alertType} className="mt-3 p-2 small">
 				{alert}
-			</Alert>
+			</Alert> */}
 		</Col>
 	);
 };

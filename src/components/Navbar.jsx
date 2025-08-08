@@ -5,8 +5,9 @@ import { Link, NavLink } from "react-router-dom";
 import { UserContext } from "../context/UserContext";
 
 const Navbar = () => {
+	const token = localStorage.getItem("token")
 	const {totalPrice} = useContext(CartContext)
-	const {token, logOut} = useContext(UserContext);
+	const {logOut} = useContext(UserContext);
 
 	return (
 		<nav className="text-light bg-dark p-2 d-flex justify-content-between align-items-center sticky-top gap-3">

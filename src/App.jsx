@@ -14,7 +14,9 @@ import { useContext } from "react";
 import { UserContext } from "./context/UserContext";
 
 function App() {
-	const {token} = useContext(UserContext)
+	// const {token} = useContext(UserContext)
+	const token = localStorage.getItem("token")
+
 	return (
 		<>
 			<Navbar />
