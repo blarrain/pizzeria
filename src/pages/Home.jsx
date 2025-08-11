@@ -2,12 +2,10 @@ import Header from "../components/Header";
 import CardPizza from "../components/CardPizza";
 import { Container, Row } from "react-bootstrap";
 import { useContext } from "react";
-import { CartContext } from "../context/CartContext";
 import { PizzasContext } from "../context/PizzasContext";
 
 const Home = () => {
-	const { pizzas, setPizzas } = useContext(PizzasContext);
-	const { cart, setCart } = useContext(CartContext);
+	const { pizzas } = useContext(PizzasContext);
 
 	return (
 		<div>

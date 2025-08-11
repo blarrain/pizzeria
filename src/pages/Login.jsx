@@ -44,7 +44,7 @@ const Login = () => {
 					/>
 				</Form.Group>
 				<Button variant='primary' type='submit'>
-					Registrarse
+					Iniciar sesión
 				</Button>
 			</Form>
 			{/* <Alert variant={alertType} className="mt-3 p-2 small">

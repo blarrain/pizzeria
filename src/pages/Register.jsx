@@ -84,7 +84,7 @@ const Register = () => {
 					/>
 				</Form.Group>
 				<Button variant="primary" type="submit">
-					Iniciar sesión
+					Registrarse
 				</Button>
 			</Form>
 			<Alert variant={alertType} className="mt-3 p-2 small">

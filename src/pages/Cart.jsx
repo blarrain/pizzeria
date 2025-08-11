@@ -7,7 +7,7 @@ import { UserContext } from "../context/UserContext";
 const Cart = () => {
 	const { token } = useContext(UserContext);
 	const { cart, setCart } = useContext(CartContext);
-	const { totalPrice } = useContext(CartContext);
+	const { totalPrice, checkout } = useContext(CartContext);
 
 	const updateQty = (item, value) => {
 		const updatedCart = [...cart];
@@ -21,11 +21,25 @@ const Cart = () => {
 		updateQty(item, Number(currentInput.value) + amount);
 	};
 
+	const handleSubmit = (e) => {
+		e.preventDefault();
+		const pedido = {
+			detalle: cart.map((p) => ({
+				id: p.id,
+				precio: p.price,
+				cantidad: p.qty,
+			})),
+			total: totalPrice,
+		};
+		checkout(pedido, token);
+	};
+
 	return (
 		<Container className='min-vh-75'>
 			<Row>
 				<Col lg='6' className='py-4 my-4 mx-auto' id='cart-content'>
 					<h2 className='mb-4 h4'>Detalles del pedido</h2>
+					<Form onSubmit={handleSubmit}>
 					{cart.map((item) =>
 						item.qty > 0 ?
 							<Form.Group
@@ -74,9 +88,9 @@ const Cart = () => {
 					<p className='h2 my-4'>
 						Total: ${totalPrice.toLocaleString("es-CL")}
 					</p>
-					<Button variant='dark' disabled={!token}>
+					<Button variant='dark' disabled={!token} type="submit">
 						Pagar
-					</Button>
+					</Button></Form>
 				</Col>
 			</Row>
 		</Container>

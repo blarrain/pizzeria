@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Button, Col, Container, Image, Row } from "react-bootstrap";
 import { useParams } from "react-router-dom";
+import { CartContext } from "../context/CartContext";
 
 const Pizza = () => {
+	const {addToCart} = useContext(CartContext)
 	const [pizza, setPizza] = useState([]);
 	const [error, setError] = useState(null);
 	const { id } = useParams();
@@ -45,7 +47,7 @@ const Pizza = () => {
 								<li key={ingredient}>{ingredient}</li>
 							))}
 						</ul>
-						<Button variant='dark'>Agregar al carrito</Button>
+						<Button variant='dark' onClick={() => addToCart({id: pizza.id, img: pizza.img, name:pizza.name, price: pizza.price})}>Agregar al carrito</Button>
 					</Col>
 				</Row>
 			)}
